@@ -25,6 +25,9 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Write release version to file
+        run: echo ${{ steps.meta.outputs.version }}>${GITHUB_WORKSPACE}/app/static/version.txt
+
       - name: Build Docker image
         uses: docker/build-push-action@v2
         with:
@@ -32,9 +35,6 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Write release version to file
-        run: echo ${{ steps.meta.outputs.version }}>${GITHUB_WORKSPACE}/app/static/version.txt
 
       - name: Scan for vulnerabilities with Lacework
         uses: timarenz/lw-scanner-action@v0.5.1
@@ -44,7 +44,8 @@ jobs:
           IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           IMAGE_TAG: ${{ steps.meta.outputs.version }}
           SCAN_LIBRARY_PACKAGES: true
-          SAVE_RESULTS_IN_LACEWORK: true
-          SAVE_BUILD_REPORT: true
-          BUILD_REPORT_FILE_NAME: myreport.html
+          SAVE_RESULTS_IN_LACEWORK: false
           USE_POLICY: true
+
+      - name: Scan kubernetes manifest
+        run: curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sh
