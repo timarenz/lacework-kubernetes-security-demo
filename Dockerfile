@@ -1,7 +1,7 @@
-FROM alpine:3.12
+FROM alpine:3.10
 # FROM alpine:edge
 
-RUN apk add --no-cache py3-pip=20.1.1-r0
+RUN apk add --no-cache py3-pip=3.7.10-r0
 # RUN apk add --no-cache py3-pip
 
 COPY ./app /app

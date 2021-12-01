@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: lacework-shift-left-demo
+  name: lacework-kubernetes-demo
   labels:
-    app: lacework-shift-left-demo
+    app: lacework-kubernetes-demo
 spec:
   type: LoadBalancer
   ports:
@@ -11,26 +11,26 @@ spec:
       port: 80
       targetPort: 5000
   selector:
-    app: lacework-shift-left-demo
+    app: lacework-kubernetes-demo
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lacework-shift-left-demo
+  name: lacework-kubernetes-demo
   labels:
-    app: lacework-shift-left-demo
+    app: lacework-kubernetes-demo
 spec:
   selector:
     matchLabels:
-      app: lacework-shift-left-demo
+      app: lacework-kubernetes-demo
   replicas: 3
   template:
     metadata:
       labels:
-        app: lacework-shift-left-demo
+        app: lacework-kubernetes-demo
     spec:
       containers:
-        - name: lacework-shift-left-demo
-          image: ghcr.io/timarenz/lacework-shift-left-demo:v0.0.2
+        - name: lacework-kubernetes-demo
+          image: ghcr.io/timarenz/lacework-kubernetes-demo:v0.0.2
           ports:
             - containerPort: 5000
