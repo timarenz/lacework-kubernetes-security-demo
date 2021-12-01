@@ -52,5 +52,5 @@ jobs:
           SOLUBLE_ORG_ID: ${{ secrets.SOLUBLE_ORG_ID }}
           SOLUBLE_API_TOKEN: ${{ secrets.SOLUBLE_API_TOKEN }}
         run: |
-          - curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sh
-          - soluble kubernetes-scan --upload
+          curl https://raw.githubusercontent.com/soluble-ai/soluble-cli/master/linux-install.sh | sh
+          soluble kubernetes-scan --upload
