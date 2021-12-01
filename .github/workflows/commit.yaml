@@ -4,12 +4,22 @@ on:
     branches:
       - "main"
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - uses: hadolint/hadolint-action@v1.6.0
         with:
@@ -22,3 +32,16 @@ jobs:
           load: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Scan for vulnerabilities with Lacework
+        uses: timarenz/lw-scanner-action@v0.5.1
+        with:
+          LW_ACCOUNT_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          LW_ACCESS_TOKEN: ${{ steps.meta.outputs.version }}
+          IMAGE_NAME: ghcr.io/timarenz/vulnerable-container
+          IMAGE_TAG: v0.0.1
+          SCAN_LIBRARY_PACKAGES: true
+          SAVE_RESULTS_IN_LACEWORK: true
+          SAVE_BUILD_REPORT: true
+          BUILD_REPORT_FILE_NAME: myreport.html
+          USE_POLICY: true
