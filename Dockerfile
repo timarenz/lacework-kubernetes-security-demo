@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # RUN apk add --no-cache python3=3.7.10-r0
-RUN apk add --no-cache python3
+RUN apk add --no-cache py3-pip
 
 COPY ./app /app
 
