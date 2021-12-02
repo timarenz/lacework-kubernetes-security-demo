@@ -50,6 +50,7 @@ jobs:
           IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           IMAGE_TAG: ${{ steps.meta.outputs.version }}
           SCAN_LIBRARY_PACKAGES: true
+          SAVE_RESULTS_IN_LACEWORK: true
           USE_POLICY: true
 
       - name: Scan kubernetes manifest
