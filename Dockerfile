@@ -1,6 +1,7 @@
 FROM alpine:3.10
 
 RUN apk add --no-cache python3=3.7.10-r0
+# RUN python3 -m pip install --upgrade pip
 
 COPY ./app /app
 
