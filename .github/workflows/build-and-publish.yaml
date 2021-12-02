@@ -6,11 +6,11 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: timarenz/${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   scan:
-    uses: timarenz/vulnerable-container/.github/workflows/scan.yaml@main
+    uses: timarenz/lacework-kubernetes-security-demo/.github/workflows/scan.yaml@main
     secrets:
       LW_ACCOUNT_NAME: ${{ secrets.LW_ACCOUNT_NAME }}
       LW_ACCESS_TOKEN: ${{ secrets.LW_ACCESS_TOKEN }}
