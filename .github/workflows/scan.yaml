@@ -6,6 +6,16 @@ on:
       - "main"
     tags-ignore:
       - "**"
+  workflow_call:
+    secrets:
+      LW_ACCOUNT_NAME:
+        required: true
+      LW_ACCESS_TOKEN:
+        required: true
+      SOLUBLE_ORG_ID:
+        required: true
+      SOLUBLE_API_TOKEN:
+        required: true
   workflow_dispatch:
 
 env:
@@ -24,9 +34,6 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
-      - name: Write release version to file
-        run: echo ${{ steps.meta.outputs.version }}>${GITHUB_WORKSPACE}/app/static/version.txt
 
       - name: Build Docker image
         uses: docker/build-push-action@v2

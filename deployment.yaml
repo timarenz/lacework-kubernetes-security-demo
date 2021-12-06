@@ -34,7 +34,7 @@ spec:
       containers:
         - name: lacework-kubernetes-security-demo
           # image: ghcr.io/timarenz/lacework-kubernetes-security-demo:latest
-          image: ghcr.io/timarenz/lacework-kubernetes-security-demo:latest
+          image: ghcr.io/timarenz/lacework-kubernetes-security-demo:v0.0.8
           imagePullPolicy: Always
           ports:
             - containerPort: 5000

@@ -10,9 +10,6 @@ app = Flask(__name__)
 
 event_text = "Lacework Kubernetes security demo"
 tweet_text = "Hello from the Container Lunchinar. Just enjoyed a fantastic presentation from @timarenz about Kubernetes Security with #laceworks #devsecops #shiftleft"
-version = open(os.path.dirname(__file__) + '/static/version.txt', 'r').read()
-lacework_report = urllib.request.urlretrieve('https://github.com/timarenz/lacework-kubernetes-security-demo/releases/download/' +
-                                             version + '/lacework.html', os.path.dirname(__file__) + '/templates/lacework.html')
 
 
 @ app.route('/')
@@ -27,12 +24,7 @@ def index():
     hostname = platform.node()
     random_cocktail = requests.get(
         'https://www.thecocktaildb.com/api/json/v1/1/random.php').json()
-    return render_template('index.html', url=url, hostname=hostname, event_text=event_text, tweet_text=tweet_text, tweet_text_url=urllib.parse.quote(tweet_text), version=version, ip=request.remote_addr, cocktail=random_cocktail['drinks'][0]['strDrink'])
-
-
-@app.route('/lacework')
-def lacework():
-    return render_template('lacework.html')
+    return render_template('index.html', url=url, hostname=hostname, event_text=event_text, tweet_text=tweet_text, tweet_text_url=urllib.parse.quote(tweet_text), ip=request.remote_addr, cocktail=random_cocktail['drinks'][0]['strDrink'])
 
 
 @app.route("/ip")
