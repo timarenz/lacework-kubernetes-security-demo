@@ -3,7 +3,7 @@ name: scan
 on:
   push:
     tags-ignore:
-      - "**"
+      - "*"
   workflow_call:
     secrets:
       LW_ACCOUNT_NAME:
