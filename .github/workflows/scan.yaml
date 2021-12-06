@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - "main"
-    tags:
-      - "*"
+    tags-ignore:
+      - "**"
   workflow_call:
     secrets:
       LW_ACCOUNT_NAME:
