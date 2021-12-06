@@ -6,8 +6,11 @@ metadata:
     app: lacework-kubernetes-security-demo
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    # service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    # service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
 spec:
   type: LoadBalancer
+  externalTrafficPolicy: Local
   ports:
     - protocol: TCP
       port: 80
@@ -34,7 +37,7 @@ spec:
       containers:
         - name: lacework-kubernetes-security-demo
           # image: ghcr.io/timarenz/lacework-kubernetes-security-demo:latest
-          image: ghcr.io/timarenz/lacework-kubernetes-security-demo:v0.0.8
+          image: ghcr.io/timarenz/lacework-kubernetes-security-demo:v0.0.9
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
