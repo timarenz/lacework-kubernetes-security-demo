@@ -12,7 +12,7 @@ event_text = "Lacework Kubernetes security demo"
 tweet_text = "Hello from the Container Lunchinar. Just enjoyed a fantastic presentation from @timarenz about Kubernetes Security with #laceworks #devsecops #shiftleft"
 
 
-@ app.route('/')
+@app.route('/')
 def index():
     images = [
         url_for('static', filename='beachops-1.png'),
