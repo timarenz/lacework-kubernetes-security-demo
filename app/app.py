@@ -8,8 +8,8 @@ from flask import jsonify
 
 app = Flask(__name__)
 
-event_text = "Lacework Kubernetes Security"
-tweet_text = "Hello from the Kubernetes Security Lunchinar. Just enjoyed a fantastic presentation from @timarenz about Kubernetes Security with #laceworks #devsecops #shiftleft"
+event_text = "Lacework Container Security"
+tweet_text = "Hello from the Container Security Lunchinar. Just enjoyed a fantastic presentation from @timarenz about Container Security with #laceworks #devsecops #shiftleft"
 
 
 @app.route('/')
