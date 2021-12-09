@@ -8,7 +8,7 @@ from flask import jsonify
 
 app = Flask(__name__)
 
-event_text = "Lacework Kubernetes security demo"
+event_text = "Lacework Kubernetes Security Demo"
 tweet_text = "Hello from the Container Lunchinar. Just enjoyed a fantastic presentation from @timarenz about Kubernetes Security with #laceworks #devsecops #shiftleft"
 
 
