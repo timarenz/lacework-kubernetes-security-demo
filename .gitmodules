@@ -1,0 +1,6 @@
+[submodule "app"]
+	path = app
+	url = https://github.com/timarenz/lacework-demo-app.git
+[submodule "infra"]
+	path = infra
+	url = https://github.com/timarenz/lacework-terraform.git
